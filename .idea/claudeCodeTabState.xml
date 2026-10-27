@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ClaudeCodeTabState">
+    <option name="tabSessions">
+      <map>
+        <entry key="0">
+          <value>
+            <TabSessionState>
+              <option name="projectPath" value="C:\Users\Y7000P\AndroidStudioProjects\FinBook" />
+              <option name="provider" value="claude" />
+              <option name="sessionId" value="ee25611e-7a34-48b9-88cf-02aa0c0c5d73" />
+              <option name="cwd" value="C:\Users\Y7000P\AndroidStudioProjects\FinBook" />
+              <option name="model" value="claude-sonnet-5[1m]" />
+              <option name="permissionMode" value="default" />
+            </TabSessionState>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>
