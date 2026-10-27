@@ -1,6 +1,9 @@
 package com.example.finbook;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,5 +31,22 @@ public class ListActivity extends AppCompatActivity {
             BillAdapter adapter = new BillAdapter(this, MainActivity.billList);
             lvBills.setAdapter(adapter);
         }
+
+        // 给 ListView 设置点击事件，点击跳转到详情页
+        lvBills.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // 获取当前点击的那条账单数据
+                Bill clickedBill = MainActivity.billList.get(position);
+
+                // 创建 Intent 跳转到详情页
+                Intent intent = new Intent(ListActivity.this, DetailActivity.class);
+
+                // 【核心传值】：把整个 Bill 对象传过去（Bill 已经实现了 Serializable）
+                intent.putExtra("bill_data", clickedBill);
+
+                startActivity(intent);
+            }
+        });
     }
 }
