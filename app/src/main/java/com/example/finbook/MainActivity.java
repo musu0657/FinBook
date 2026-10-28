@@ -4,19 +4,21 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
+
 import androidx.appcompat.app.AppCompatActivity;
-import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    // 1. 存放所有账单的集合
-    public static List<Bill> billList = new ArrayList<>();
+    // 数据库帮助类实例
+    private BillDatabaseHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main); // 设置布局
+
+        // 1. 实例化数据库帮助类
+        dbHelper = new BillDatabaseHelper(this);
 
         // 2. 绑定控件
         EditText etAmount = findViewById(R.id.et_amount);
@@ -25,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
         CheckBox cbImportant = findViewById(R.id.cb_important);
         ImageButton btnSave = findViewById(R.id.btn_save);
         Button btnViewList = findViewById(R.id.btn_view_list);
+        Button btnClear = findViewById(R.id.btn_clear);
 
         // 3. 初始化 Spinner
         String[] categories = {"餐饮", "交通", "购物", "工资", "娱乐", "其他"};
@@ -32,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spCategory.setAdapter(adapter);
 
-        // 4. 保存按钮点击事件
+        // 4. 保存按钮点击事件：把数据存入数据库
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,24 +53,30 @@ public class MainActivity extends AppCompatActivity {
                 String category = spCategory.getSelectedItem().toString();
                 String remark = cbImportant.isChecked() ? "重点" : "普通";
 
-                billList.add(new Bill(type, category, amount, remark));
-                Toast.makeText(MainActivity.this, "保存成功！共 " + billList.size() + " 笔", Toast.LENGTH_SHORT).show();
+                // 构造 Bill 对象，并插入到数据库中
+                Bill newBill = new Bill(type, category, amount, remark);
+                dbHelper.insertBill(newBill);
+                Toast.makeText(MainActivity.this, "保存成功！", Toast.LENGTH_SHORT).show();
                 etAmount.setText("");
             }
         });
 
-        // 5. 查看列表按钮的点击事件：跳转并传值
+        // 5. 查看列表按钮的点击事件：跳转到列表页
         btnViewList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // 创建 Intent，从 MainActivity 跳转到 ListActivity
                 Intent intent = new Intent(MainActivity.this, ListActivity.class);
-
-                // 把当前账单的总数量传给下一个页面
-                intent.putExtra("total_count", billList.size());
-
-                // 执行跳转
                 startActivity(intent);
+            }
+        });
+
+        // 6. 清空数据按钮的点击事件：清空数据库中的全部账单
+        btnClear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dbHelper.clearAllBills();
+                Toast.makeText(MainActivity.this, "已清空全部数据", Toast.LENGTH_SHORT).show();
             }
         });
     }
