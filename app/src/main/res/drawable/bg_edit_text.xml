@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 输入框底部下划线样式 -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 底部一条 2dp 高的下划线 -->
+    <item android:gravity="bottom">
+        <shape android:shape="rectangle">
+            <size android:height="2dp" />
+            <solid android:color="@color/btn_blue" />
+        </shape>
+    </item>
+</layer-list>
