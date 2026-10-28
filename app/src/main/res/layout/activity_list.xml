@@ -11,16 +11,94 @@
         android:id="@+id/tv_student_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="姓名：张三　学号：20210001"
+        android:text="姓名：万维唯　学号：2406100225"
         android:textSize="18sp" />
 
-    <!-- 汇总信息 -->
-    <TextView
-        android:id="@+id/tv_summary"
+    <!-- 顶部汇总：左侧标题 + 右侧收支金额 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- 左侧：标题 -->
+        <TextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="全部账单"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <!-- 右侧：两行小字（支出 / 收入） -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_expense"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:text="支出 ¥0.00"
+                android:textColor="#333333"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_income"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="2dp"
+                android:text="收入 ¥0.00"
+                android:textColor="#07C160"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- 搜索框 -->
+    <EditText
+        android:id="@+id/et_search"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="搜索备注或分类"
+        android:inputType="text"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/btn_gray"
+        android:textSize="14sp" />
+
+    <!-- 条件筛选：全部 / 收入 / 支出 -->
+    <RadioGroup
+        android:id="@+id/rg_filter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="总支出：0.00　总收入：0.00" />
+        android:layout_marginTop="12dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_filter_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="全部" />
+
+        <RadioButton
+            android:id="@+id/rb_filter_income"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="收入" />
+
+        <RadioButton
+            android:id="@+id/rb_filter_expense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="支出" />
+    </RadioGroup>
 
     <!-- 展示数据 -->
     <ListView

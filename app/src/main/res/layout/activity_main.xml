@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- 记账主页面布局 -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -12,7 +13,7 @@
         android:id="@+id/tv_student_info"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="姓名：张三　学号：20210001"
+        android:text="姓名：万维唯　学号：2406100225"
         android:textSize="18sp" />
 
     <!-- 输入金额 -->
@@ -20,16 +21,33 @@
         android:id="@+id/et_amount"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_edit_text"
         android:hint="请输入金额"
-        android:inputType="numberDecimal" />
+        android:inputType="numberDecimal"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/btn_gray"
+        android:textSize="16sp" />
+
+    <!-- 输入备注 -->
+    <EditText
+        android:id="@+id/et_remark"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="添加备注（如：吃沙县、买衣服）"
+        android:inputType="text"
+        android:paddingBottom="8dp"
+        android:textColorHint="@color/btn_gray"
+        android:textSize="16sp" />
 
     <!-- 选择收支类型 -->
     <RadioGroup
         android:id="@+id/rg_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
+        android:layout_marginTop="16dp"
         android:orientation="horizontal">
 
         <RadioButton
@@ -46,45 +64,47 @@
             android:text="收入" />
     </RadioGroup>
 
-    <!-- 分类下拉框 -->
+    <!-- 分类下拉框（列表由 MainActivity 根据收支类型动态设置） -->
     <Spinner
         android:id="@+id/sp_category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:entries="@array/bill_categories" />
+        android:layout_marginTop="16dp" />
 
-    <!-- 重点标记 -->
-    <CheckBox
-        android:id="@+id/cb_important"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:text="重点标记" />
-
-    <!-- 保存按钮 -->
-    <ImageButton
+    <!-- 保存按钮（蓝色） -->
+    <Button
         android:id="@+id/btn_save"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        android:contentDescription="保存"
-        android:src="@android:drawable/ic_menu_save" />
+        android:layout_marginTop="16dp"
+        android:text="保存账单"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/btn_blue"
+        app:cornerRadius="8dp" />
 
-    <!-- 查看列表按钮 -->
+    <!-- 查看列表按钮（灰色） -->
     <Button
         android:id="@+id/btn_view_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="查看列表" />
+        android:text="查看列表"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/btn_gray"
+        app:cornerRadius="8dp" />
 
-    <!-- 清空数据按钮 -->
+    <!-- 清空数据按钮（红色） -->
     <Button
         android:id="@+id/btn_clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:text="清空数据" />
+        android:text="清空数据"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:backgroundTint="@color/btn_red"
+        app:cornerRadius="8dp" />
 
 </LinearLayout>

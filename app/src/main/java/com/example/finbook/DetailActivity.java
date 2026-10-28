@@ -17,14 +17,21 @@ public class DetailActivity extends AppCompatActivity {
 
         // 3. 找到布局里的 TextView
         TextView tvInfo = findViewById(R.id.tv_info);
+        TextView tvTime = findViewById(R.id.tv_time);
 
         // 4. 如果有数据，就展示出来
-        if (bill != null && tvInfo != null) {
-            String info = "类型：" + bill.getType() + "\n" +
-                    "分类：" + bill.getCategory() + "\n" +
-                    "金额：" + bill.getAmount() + " 元\n" +
-                    "备注：" + bill.getRemark();
-            tvInfo.setText(info);
+        if (bill != null) {
+            if (tvInfo != null) {
+                String info = "类型：" + bill.getType() + "\n" +
+                        "分类：" + bill.getCategory() + "\n" +
+                        "金额：" + bill.getAmount() + " 元\n" +
+                        "备注：" + bill.getRemark();
+                tvInfo.setText(info);
+            }
+            // 展示完整的年月日时分
+            if (tvTime != null) {
+                tvTime.setText("时间：" + bill.getTime());
+            }
         }
     }
 }

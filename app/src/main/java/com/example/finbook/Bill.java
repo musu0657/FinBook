@@ -10,6 +10,8 @@ public class Bill implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    /** 数据库自增主键 id */
+    private int id;
     /** 收支类型：收入 / 支出 */
     private String type;
     /** 分类：餐饮、交通、购物等 */
@@ -18,17 +20,28 @@ public class Bill implements Serializable {
     private double amount;
     /** 备注 */
     private String remark;
+    /** 记录时间（格式化后的字符串，如 "2026-10-28 10:00"） */
+    private String time;
 
     /** 无参构造方法 */
     public Bill() {
     }
 
     /** 全参构造方法 */
-    public Bill(String type, String category, double amount, String remark) {
+    public Bill(String type, String category, double amount, String remark, String time) {
         this.type = type;
         this.category = category;
         this.amount = amount;
         this.remark = remark;
+        this.time = time;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getType() {
@@ -61,5 +74,13 @@ public class Bill implements Serializable {
 
     public void setRemark(String remark) {
         this.remark = remark;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }
